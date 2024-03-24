@@ -32,7 +32,7 @@ Optional:
 For VAOC to work, a macro camera is needed that can see the nozzle at small distances with adjustable focus, it is suggested to use a Raspberry Pi camera, as it has a small footprint, alongside a Pi Camera HDMI Cable extension, so that the VAOC device and case can be connected via the HDMI cable for longer distances, to avoid using the ribbon cable.
 
 There are various cases for the camera, which can be found on **Discord** or you can use the full VAOC camera case, which uses the RatRig endstop from @VisualTech48, and enables you to check your Z Offset as well.
-![image](https://github.com/Rat-OS/RatOS/assets/2025763/ab0dc06c-14cb-4725-8c90-190701509f49)
+![image](_media/VAOC_Device.png)
 > [!TIP]
 > The benefit of running a case with the PI HDMI cable extender, is that it carries 4 additional pins (we need 15 for our camera, and we have 4 extra, which uses to drive the Neopixel lights and the Endstop)
 
@@ -64,8 +64,8 @@ custom_flags: --camera-height=1080 --camera-width=1920 --camera-video.height=192
 ```
 After the camera is set up, you need to ensure the proper clearance for the camera, which can be set up in the "**ratos-variables.cfg**", in the "**Machine**" tab in Mainsail. This is a sanity check.
 
-![image](https://github.com/Rat-OS/RatOS/assets/2025763/a88d6f8e-804a-42dc-b618-69eacd5be68a)
-![image](https://github.com/Rat-OS/RatOS/assets/2025763/66df534c-653c-4d5a-8571-426b318e1711)
+![image](_media/Machine_Menu.png)
+![image](_media/Config_Root.png)
 
 > [!WARNING]
 > Do not change any of the settings of this file, besides **_zcontrolpoint =** this value changes our Z (_Bed position_) for the start of our **VAOC** calibration. (If the value is **50.0**, when you click _Start Calibration_ in VAOC, your Bed will go down by **50.0**).
@@ -118,7 +118,7 @@ To configure the Z-Offset-Probe, the case needs to have a physical probe that th
 >
 > It is always recommended to take a ruler, or move the machine from the centre of the camera towards your Probe Point and measure it exactly.
 
-![image](https://github.com/Rat-OS/RatOS/assets/2025763/69af776e-d7ec-4b9b-9428-fba822402591)
+![image](_media/VAOC_See_Through.png)
 
 This is an example configuration, you have to define your own pin to use. VAOC works with any endstop, the only requirement is that it is wired correctly.
 
@@ -145,8 +145,8 @@ samples_tolerance_retries: 5
 > Incorrect values for the `pin: ^PF0`, `z_offset: 28.35 `, `y_offset: 29.0 t`, `x_offset: 0`, may result in crashed bed/broken camera when doing Z-Offset-Check! Triple-check everything!
 
 To test if the Z-Offset-Endstop is wired correctly, you can use the following command: `Z_OFFSET_QUERY_PROBE`, with a physical click test, by engaging the endstop, and checking if it changes state by rerunning `Z_OFFSET_QUERY_PROBE`.
-![image](https://github.com/Rat-OS/RatOS/assets/2025763/757ca8c5-1178-43a6-a840-c843b805f366)
-![image](https://github.com/Rat-OS/RatOS/assets/2025763/b97bb911-3e9c-480c-a339-3bc666dc4517)
+![image](_media/Offset_Probe_Test.png)
+![image](_media/Offset_Probe_Test_2.png)
 > [!IMPORTANT]
 > If the endstop appears to have an inverted signal (Triggered when it should be opened and vice versa, you can put a **!** before the pin name. Ie. `pin: ^!PF0`
 
@@ -155,7 +155,7 @@ If the camera is set up properly and working, you are ready for the next step wh
 
 To enter the calibration, press the VAOC button on the left side of the menu.
 
-![image](https://github.com/Rat-OS/RatOS/assets/2025763/f1ce316c-61ea-4c92-aed7-c67bd12dda10)
+![image](_media/VAOC_Menu.png)
 
 Please allow the system a few seconds to open up the VAOC calibration. Press "Start Calibration on the upper left corner. 
 > [!IMPORTANT]
@@ -164,8 +164,8 @@ Please allow the system a few seconds to open up the VAOC calibration. Press "St
 
 When the machine is done moving towards the `ratos-variables.cfg` values, you can now place the VAOC Case as close as to the nozzle center as you can.
 
-![image](https://github.com/Rat-OS/RatOS/assets/2025763/85ed9d00-9ab0-48a9-ae31-70c58a94bcef)
-![image](https://github.com/Rat-OS/RatOS/assets/2025763/581e5e6d-b7e7-4f11-886b-8861a2a70642)
+![image](_media/VAOC_Example.png)
+![image](_media/Calibration_01.png)
 > [!TIP]
 > You can enable the LEDs by clicking on the Light icon on the top right side!
 
@@ -174,17 +174,17 @@ Now that you have your nozzle close enough to the camera centre, you need to ens
 
 _Lens unscrewing plastic:_
 
-![image](https://github.com/Rat-OS/RatOS/assets/2025763/73ebda8a-dc47-4f23-959c-bcbb7ed9a2e9)
+![image](_media/Calibration_01_Plastic.png)
 
 Once you've unscrewed it as much as you can without popping it out, click on the **Move** button in VAOC interface, and move the bed height with **VAOC Z Focus tool**, until you get a **clear** and **crisp** image of the **tip of the nozzle**, like so:
-![image](https://github.com/Rat-OS/RatOS/assets/2025763/511f5bd7-a5b3-4bc8-b697-beea1afb5134)
+![image](_media/Calibration_02.png
 
 > [!TIP]
 > Congratulations, you now have VAOC Ready to calibrate the offsets.
 
 ### Setting the Offset between T0 and T1 toolhead.
 Now that the VAOC Camera is ready and set, we need to move the toolhead towards the camera. This can be done by clicking and dragging the image, till the green circle is in the middle of the nozzle. 
-Video: ![video](https://github.com/Rat-OS/RatOS/assets/2025763/7cd9a167-3f4e-4f52-96a3-504bbdf6ea15)
+Video: ![video](_media/Nozzle_move.mp4)
 
 > [!WARNING]
 > If moving the camera centre towards the nozzle results in the toolhead going in the wrong direction/s, you need to flip the image horizontally/vertically in the **Settings** tab!
@@ -193,9 +193,9 @@ After moving the circle towards the centre as close as you can, you need to ensu
 
 This can be accessed on the Settings button. Change this till the outer circle and the inner circle match. In this case that was 210mm.
 
-![image](https://github.com/Rat-OS/RatOS/assets/2025763/4b1a317b-561e-411c-9b34-55bf4e77322a)
+![image](_media/Calibration_03.png)
 
-Video: ![video](https://github.com/Rat-OS/RatOS/assets/2025763/9a0362ea-7d25-4045-b526-a36e65d70d1f)
+Video: ![video](_media/Nozzle_PPmm.mp4)
 
 > [!TIP]
 > You can use the mouse wheel to zoom in on the nozzle.
@@ -207,14 +207,14 @@ When the green circles are as close to the centre as they can be, click on the "
 
 After you've set the reference go to the second toolhead by clicking on the **T1** button on the top left corner, and drag and drop the green circle again till it gets towards the center of the T1 toolhead.
 Explanatory video:
-![video](https://github.com/Rat-OS/RatOS/assets/2025763/cfac213a-917d-4182-ad07-346581024fde)
+![video](_media/Nozzle_Calibrate_Reference.mp4)
 
 ### Optional Z-Offset Calibration
 > [!CAUTION]
 > Before doing Z-Offset Calibration, make sure that the values for the `pin: ^PF0`, `z_offset: 28.35 `, `y_offset: 29.0 t`, `x_offset: 0`, inside `printer.cfg` are correct! Incorrect settings may result in a crashed bed and/or broken camera when doing Z-Offset-Check! Triple-check everything!
 Video explaining what happens during Z-Offset-Calibration:
 
-![video](https://github.com/Rat-OS/RatOS/assets/2025763/2c8f3202-9426-48cf-8657-b390be0245de)
+![video](_media/VAOC_Z-Click.mp4)
 
 To calibrate the Z-Offset between 2 nozzles it comes down to a few simple steps:
 

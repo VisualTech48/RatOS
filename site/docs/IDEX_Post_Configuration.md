@@ -13,7 +13,7 @@ As the title suggests, we need to check the machine and ensure everything is in 
 ## What is a Mixed CoreXY
 The following diagram elaborates on the kinematics of our Hybrid CoreXY
 
-![Screenshot_2](https://github.com/VisualTech48/RatOS/assets/2025763/e8c82ad0-dfd2-4fd2-b539-64cd0db25f02)
+![Screenshot_2](_media/Screenshot_2.png)
 Your configuration of motors should follow the current diagram. Where X is the upper motor, DC is the bottom motor, and Y1 and Y2 mark the Y motors.
 > [!TIP]
 > When doing tension for the IDEX it is recommended to do X and DC first, ensuring they have the same belt length and tension, and that there is no skew in the X gantry. You can check this by moving the gantry forward and ensuring the gaps left and right are the same when you tension your X and DC belts. Only after that should you connect the Y tensioners and tension the Y axis of the printer.
@@ -26,14 +26,14 @@ Next step is to update everything in the **Update Manager**. **The Update Manage
 > [!TIP]
 > It is recommended to be up-to-date with Klipper and RatOS especially, as this ensures proper operation.
 
-![Machine_Tab](https://github.com/VisualTech48/RatOS/assets/2025763/84f6d169-49a5-4dce-9a53-49e49fad8501)
-![Update Manager](https://github.com/VisualTech48/RatOS/assets/2025763/769b3353-9b42-4884-b251-dcfc4d31380f)
+![Machine_Tab](_media/Machine_Menu.png)
+![Update Manager](_media/Update_Manager.png)
 
 You should now be able to see all of your components on the "Dashboard" panel if you have everything wired and connected successfully, as showcased in the image below. If that is the case, you are more than welcome to move forward.
-![Dashboard](https://github.com/VisualTech48/RatOS/assets/2025763/050ed62a-1508-4eea-bfbb-46fb9cfae307)
+![Dashboard](_media/Dashboard.png)
 
 Dashboard example:
-![Dashboard_Success](https://github.com/VisualTech48/RatOS/assets/2025763/2d2540a6-00b4-401e-b0ed-e4a17a780043)
+![Dashboard_Success](_media/Dashboard_Success.png)
 
 ## Stepper Direction
 > [!CAUTION]
@@ -43,7 +43,7 @@ Dashboard example:
 
 Here are the expected and needed directions for our printer kinematics, keep that in mind when doing movement testing.
 
-![Direction](https://github.com/VisualTech48/RatOS/assets/2025763/67c36036-0b61-475e-ae03-34d503bfaff6)
+![Direction](_media/Direction.png)
 
 ### Preparations
 Before any homing or movement, we need to first ensure our X and DC run in the direction we want, please refer to the diagram above for directions! For that we need enable "Set Center Kinematic Position".
@@ -65,7 +65,7 @@ The Printer.cfg is located in the Machine Tab, in our config files.
 
 > [!WARNING]
 > Don't forget to put your gantry, and X and DC in their proper centres for this testing, as showcased, otherwise, you risk collision!
-> ![Gantry_Position](https://github.com/VisualTech48/RatOS/assets/2025763/020886b2-11a0-4baa-97aa-3bfa7eff4eca)
+> ![Gantry_Position](_media/Gantry_Position.png)
 
 Testing X and DC can be simply done in Klipper using the following command:
 ```
@@ -105,7 +105,7 @@ On your initial movement of the Y, the Y must move in the proper direction, whic
 > [!TIP]
 > This is recommended to do through Mainsail, and to move it by small 1 increments.
 
-![Console_Center_Kinematic](https://github.com/VisualTech48/RatOS/assets/2025763/801d6cab-c639-44b5-998b-715afa1cf2cb)
+![Console_Center_Kinematic](_media/Console_Center_Kinematic.png)
 
 
 If you have luck and it moves correctly, you can skip this section. However, if you have issues, please proceed. 
@@ -186,7 +186,7 @@ For IDEX to work properly this has to be defined correctly in our **"printer.cfg
 > [!CAUTION]
 > Setting incorrect values for the offsets may result in the 2 toolheads crashing, or hitting the machine!
 
-![Endstop_Positions](https://github.com/VisualTech48/RatOS/assets/2025763/f99430c1-a50a-4741-a8ad-0a49c7b92b81)
+![Endstop_Positions](_media/Endstop_Positions.png)
 How is it caluclated? By pushing both your **left** and **right** toolhead to the maximum of its respective side, and then mesuring from the center of the nozzle, to the start of the magnetic sheet + 5mm. As the dimensions of the magnetic sheet is 310x310 (in a VCore 300), you have 5mm extra on each side.
 
 > [!TIP]

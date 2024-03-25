@@ -38,6 +38,7 @@ Dashboard example:
 ## Stepper Direction
 > [!CAUTION]
 > Do not HOME the device YET! IDEX requires a lot of safety checks before we get to homing! Failing to heed this configuration may result in injuries or damage to your machine!
+
 > [!WARNING]
 > Ensure that before any movement, to place your **gantry**, **X** and **DC** to have enough clearance for test movements, refer to the kinematics picture for an example.
 

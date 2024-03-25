@@ -10,18 +10,20 @@
 
 # Before you start
 As the title suggests, we need to check the machine and ensure everything is in working order. All examples will follow a Mixed CoreXY kinematics, based on RatRigs IDEX platform, designed by Markforged;
-## What is a Mixed CoreXY
-The following diagram elaborates on the kinematics of our Hybrid CoreXY
+## What is a Hybrid/Mixed CoreXY
+The following diagram elaborates on the kinematics of our Hybrid/Mixed CoreXY
 
 ![Screenshot_2](_media/Screenshot_2.png)
-Your configuration of motors should follow the current diagram. Where X is the upper motor, DC is the bottom motor, and Y1 and Y2 mark the Y motors.
+Your configuration of motors should follow the current diagram. Where **X** is the **upper motor**, **DC** is the **bottom motor**, and **Y1** and **Y2** mark the **Y motors**.
 > [!TIP]
-> When doing tension for the IDEX it is recommended to do X and DC first, ensuring they have the same belt length and tension, and that there is no skew in the X gantry. You can check this by moving the gantry forward and ensuring the gaps left and right are the same when you tension your X and DC belts. Only after that should you connect the Y tensioners and tension the Y axis of the printer.
+> When doing tension for the IDEX it is recommended to do **X** and **DC** first, ensuring they have the same belt length and tension, and that there is no skew in the X gantry.
+>
+> You can check this by moving the gantry forward and ensuring the gaps left and right are the same when you tension your X and DC belts. Only after that should you connect the Y tensioners and tension the Y axis of the printer.
 
 If you have confirmed that the gantry moves properly without any stalls or binding you are ready for the next step.
 
 ## Mainsail
-Next step is to update everything in the **Update Manager**. **The Update Manager** is accessed by going in the "**Machine**" Tab on the left side, and then clicking the "**Refresh**" icon in the Update Manager, and updating all of the components. 
+The next step is to update everything in the **Update Manager**. **The Update Manager** is accessed by going in the "**Machine**" Tab on the left side, and then clicking the "**Refresh**" icon in the Update Manager, and updating all of the components. 
 
 > [!TIP]
 > It is recommended to be up-to-date with Klipper and RatOS especially, as this ensures proper operation.
@@ -40,14 +42,14 @@ Dashboard example:
 > Do not HOME the device YET! IDEX requires a lot of safety checks before we get to homing! Failing to heed this configuration may result in injuries or damage to your machine!
 
 > [!WARNING]
-> Ensure that before any movement, to place your **gantry**, **X** and **DC** to have enough clearance for test movements, refer to the kinematics picture for an example.
+> Ensure that before any movement, place your **gantry**, **X** and **DC** to have enough clearance for test movements, refer to the below kinematics picture for an example.
 
-Here are the expected and needed directions for our printer kinematics, keep that in mind when doing movement testing.
+The expected directions for our Hybrid Printer Kinematics, keep that in mind when doing movement testing.
 
 ![Direction](_media/Direction.png)
 
 ### Preparations
-Before any homing or movement, we need to first ensure our X and DC run in the direction we want, please refer to the diagram above for directions! For that we need enable "Set Center Kinematic Position".
+Before any homing or movement, we first need to ensure our X and DC run in the direction we want, please refer to the diagram above for directions! To achive that, we need to use "Set Center Kinematic Position".
 > [!WARNING]
 > Using SET CENTER KINEMATIC POSITION is ONLY for debugging processes, do not forget to use "**G28**" command or "**Restart Firmware**" before any other motion. This will "trick" the machine that all of our axes are at the centre of the machine.
 > 
@@ -55,14 +57,14 @@ Before any homing or movement, we need to first ensure our X and DC run in the d
 > 
 > Improper usage of the kinematic movements during this may result in your toolhead and other parts of your printer colliding. Be wary.
 
-We need to prepare and change our printer.cfg for this part as we go, so prepare the printer.cfg file in another Tab. 
-The Printer.cfg is located in the Machine Tab, in our config files.
+Changes are needed in your printer.cfg for this part and as we proceed, so preferably, prepare the "**printer.cfg**" file in another Tab. 
+The **"printer.cfg"** is located in the **Machine** Tab, in our config files.
 
 ![Machine_Menu.png](_media/Machine_Menu.png)
 
 ### Testing directions X
 > [!NOTE]
-> As no motor and configuration is the same, you need to change the motor direction pins of the 4 following dir_pins. `[dual_carriage]`, `[stepper_x]`, `[stepper_y]`, `[stepper_y1l]` until you get correct movement.
+> As no motor and configuration are the same, changing the motor direction pins of the 4 following dir_pins is needed. `[dual_carriage]`, `[stepper_x]`, `[stepper_y]`, `[stepper_y1l]` until you get correct movement.
 
 > [!WARNING]
 > Don't forget to put your gantry, and X and DC in their proper centres for this testing, as showcased, otherwise, you risk collision!
@@ -77,10 +79,10 @@ FORCE_MOVE STEPPER=stepper_x DISTANCE=-10 VELOCITY=10
 FORCE_MOVE STEPPER=dual_carriage DISTANCE=10 VELOCITY=10
 FORCE_MOVE STEPPER=dual_carriage DISTANCE=-10 VELOCITY=10
 ```
-When you run the first command the X should move 10mm to the right, and when running the second command the X should go 10mm on the left side, returning to the original position.
+When you run the first command, the X should move **10mm** to the **right**, while running the second command the X should go **10mm** on the **left** side, returning to its original position.
 
 > [!IMPORTANT]
-> If your motor runs in the opposite direction, you need to navigate to your motor sections, and find the motor that is going in the opposite direction and adding the **!** sign to the `dir_pin`:
+> If your motor runs in the opposite direction, you need to navigate to your motor sections, find the motor that is going in the opposite direction and adding or removing the **!** sign after the `dir_pin`:
 > ```
 > [dual_carriage]
 > dir_pin: !dual_carriage_dir_pin 
@@ -90,34 +92,33 @@ When you run the first command the X should move 10mm to the right, and when run
 
 ### Testing directions Y
 > [!TIP]
-> Don't forget to click "Save & Restart" on each change you do to your **printer.cfg**, and to re-enable CENTRE KINEMATIC POSITION again if you haven't already for doing our initial testing!
+> Don't forget to click "Save & Restart" when making any change in your **printer.cfg**, and to re-enable **CENTRE KINEMATIC POSITION** again if you haven't already, which allows us to do our initial testing!
 
 Once you confirm that **X** and **DC** run in the proper direction we need to see if **Y runs properly**. 
 
-As our Y runs on 2 motors, as FORCE_MOVE does not work, as it cannot move 2 motors at the same time. You can move the Y through Mainsail or using the G1 command, ie, `G1 Y210.00 F3000`.
+As our Y runs on 2 motors, the "FORCE_MOVE" command does not function, as the command cannot move 2 motors simultaneously. Moving the Y is recommended through Mainsail, or using the G1 command, ie, `G1 Y210.00 F3000`.
 > [!CAUTION]
-> Move in small increments, otherwise you might damage your printer, as we have not confirmed the motors are going in the right direction!
+> Movement in small increments is recommended, otherwise you risk damaging your printer, as we have not confirmed the motors are going in the right direction!
 
-**What movement to expect?** When moving Y the X motors should counter the movement to stay in place, which means that if you move Y it shouldn't move any of the toolheads. 
-Do not be alarmed if you hear wired noise or belt skipping, that is why we are doing this to make sure everything runs properly. 
+**What movement is expected?** When moving the Y axis, the X and DC motors should counter the movement to stay in place, meaning that if you move the Y axis only, it shouldn't move any of the toolheads. 
+Do not be alarmed if you hear weird noises or belt skipping, it is why we are doing movement tests to make sure everything runs properly. 
 
 On your initial movement of the Y, the Y must move in the proper direction, which means moving it in a **negative** direction (_ie. -10_) should move the Y Gantry **towards the front** of the machines, and moving it in a **positive** direction (_ie. +10_) should move the Y Gantry **away from the front**, and towards the back, all without moving X and DC.
 
 > [!TIP]
-> This is recommended to do through Mainsail, and to move it by small 1 increments.
+> It is recommended to do this through Mainsail, and to move it by small +-1 increments.
 
 ![Console_Center_Kinematic](_media/Console_Center_Kinematic.png)
 
-
-If you have luck and it moves correctly, you can skip this section. However, if you have issues, please proceed. 
+If you are lucky and it moves correctly, feel free to skip this section. However, if you have issues, please proceed. 
 
 **Scenarios and how to fix them.**
 > [!TIP]
-> Don't forget to click "Save & Restart" on each change you make to your **"printer.cfg"**, and to re-enable CENTRE KINEMATIC POSITION again if you haven't already for doing our initial testing!
+> Don't forget to click "Save & Restart" when making any change in your **printer.cfg**, and to re-enable **CENTRE KINEMATIC POSITION** again if you haven't already, which allows us to do our initial testing!
 
 > **SCENARIO 1:** When moving only Y, my X and DC moves!!!
 
-Most likely addition to this, your Y moves in the opposite direction, Invert the Y motors in the **"printer.cfg"**.
+In addition to this, most likely, your Y moves in the opposite direction as well. To remedy this, invert the Y motors in the **"printer.cfg"**.
 Switch the `dir_pin` of both the **Y motors**:
 
 Eg.
@@ -142,11 +143,11 @@ rotation_distance: 40
 dir_pin: y1_dir_pin                
 rotation_distance: 40   
 ```
-> **SCENARIO 2:** When moving Y, its skewing, and skips the belt as if it is grinding!!!
+> **SCENARIO 2:** When moving Y, the gantry is skewing, and skips the belt as if it is grinding!!! HELP!
 
 Your Y motors are running in the same direction. Switch the `dir_pin` of ONE the **Y motors**:
 > [!IMPORTANT]
-> Which one depends on the movement of the kinematics, so after adding a **"!"** to one of the motors to switch its direction, you need to rerun the test again, and then invert both of them if you experience the previous scenario.
+> Which one depends on the movement of the kinematics, so after adding/removing a **"!"** to one of the motors to switch its direction, you need to rerun the test again, and then invert both of them if you experience the previous scenario.
 
 Eg.
 ```
@@ -181,14 +182,16 @@ You should now home X and Y to test it.
 > [!IMPORTANT]
 > **Left toolhead** is the main toolhead, named **"X"**, and the **Right** toolhead is named **"dual_carriage"** or **"DC"**
 
-While homing your X it is a big possibility that you've noticed it is off-center. This is due to IDEX having Park positions, which are essentially positions that they sit when they are not in use. 
+While homing your X, there is a large possibility that you've noticed it is off-center. This is due to IDEX having Park positions, which are essentially positions that they rest when they are not in use. 
 
 For IDEX to work properly this has to be defined correctly in our **"printer.cfg"**. This image illustrates how to calculate it based on a 300 IDEX machine. 
 > [!CAUTION]
 > Setting incorrect values for the offsets may result in the 2 toolheads crashing, or hitting the machine!
 
 ![Endstop_Positions](_media/Endstop_Positions.png)
-How is it caluclated? By pushing both your **left** and **right** toolhead to the maximum of its respective side, and then mesuring from the center of the nozzle, to the start of the magnetic sheet + 5mm. As the dimensions of the magnetic sheet is 310x310 (in a VCore 300), you have 5mm extra on each side.
+**How do I calculated it properly?** By pushing both your **left** and **right** toolhead to the maximum of its respective side, and then mesuring from the center of the nozzle, to the start of the magnetic sheet + 5mm. As the dimensions of the magnetic sheet is 310x310 (in a VCore 300), you have 5mm extra on each side.
+
+This can be done manually with a ruler, or via Mainsail and manually checking values.
 
 > [!TIP]
 > Move the printed endstop part as far as your toolhead allows it, without collision.
@@ -197,9 +200,9 @@ Based on the image, you need to change: `position_min:`, `position_max:`, `posit
 ```
 [stepper_x]
 ...
-position_min: -72
+position_min: -73
 position_max: 300
-position_endstop: -72
+position_endstop: -73
 
 [dual_carriage]
 ...

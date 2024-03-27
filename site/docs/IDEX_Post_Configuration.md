@@ -1,15 +1,15 @@
 # IDEX - Independent Dual Extruder Post Installation Configuration
 > [!NOTE]
-> It Looks like you installed an IDEX Configuration, before you run anything on your machine, it is STRONGLY recommended to go through this guide before proceeding, unless you know what you are doing.
+> It looks like you installed an IDEX Configuration, before you run anything on your machine, it is STRONGLY recommended to go through this guide before proceeding, unless you know what you are doing.
 
 > [!IMPORTANT]
 > IDEX Software is designed, programmed and integrated by **HelgeKeck** and **Miklschmidt**, all credits go to them. I (VisualTech48) am just writing this guide.
 
 > [!CAUTION]
-> Disclaimer - You are actually responsible for the operation of your machine, failing to do proper configuration and check may result in injury or serious damage to your machine!
+> Disclaimer - You are actually responsible for the operation of your machine, failing to do proper configuration and checks may result in injury or serious damage to your machine!
 
 # Before you start
-As the title suggests, we need to check the machine and ensure everything is in working order. All examples will follow a Mixed CoreXY kinematics, based on RatRigs IDEX platform, designed by Markforged;
+As the title suggests, we must check the machine and ensure everything is in working order. All examples will follow a Mixed CoreXY kinematics, based on RatRigs IDEX platform, designed by Markforged;
 ## What is a Hybrid/Mixed CoreXY
 The following diagram elaborates on the kinematics of our Hybrid/Mixed CoreXY
 
@@ -23,7 +23,7 @@ Your configuration of motors should follow the current diagram. Where **X** is t
 If you have confirmed that the gantry moves properly without any stalls or binding you are ready for the next step.
 
 ## Mainsail
-The next step is to update everything in the **Update Manager**. **The Update Manager** is accessed by going in the "**Machine**" Tab on the left side, and then clicking the "**Refresh**" icon in the Update Manager, and updating all of the components. 
+The next step is to update everything in the **Update Manager**. **The Update Manager** is accessed by going to the "**Machine**" Tab on the left side, and clicking the "**Refresh**" icon in the Update Manager, updating all of the components. 
 
 > [!TIP]
 > It is recommended to be up-to-date with Klipper and RatOS especially, as this ensures proper operation.
@@ -31,7 +31,7 @@ The next step is to update everything in the **Update Manager**. **The Update Ma
 ![Machine_Tab](_media/Machine_Menu.png)
 ![Update Manager](_media/Update_Manager.png)
 
-You should now be able to see all of your components on the "Dashboard" panel if you have everything wired and connected successfully, as showcased in the image below. If that is the case, you are more than welcome to move forward.
+You should now be able to see all of your components on the "Dashboard" panel if you have everything wired and connected successfully, as showcased in the image below. If that is the case, you are welcome to proceed.
 ![Dashboard](_media/Dashboard.png)
 
 Dashboard example:
@@ -39,10 +39,10 @@ Dashboard example:
 
 ## Stepper Direction
 > [!CAUTION]
-> Do not HOME the device YET! IDEX requires a lot of safety checks before we get to homing! Failing to heed this configuration may result in injuries or damage to your machine!
+> Do not HOME the device YET! IDEX requires a lot of safety checks before we get to homing! Failing to heed and check proper configuration may result in injuries or damage to your machine!
 
 > [!WARNING]
-> Ensure that before any movement, place your **gantry**, **X** and **DC** to have enough clearance for test movements, refer to the below kinematics picture for an example.
+> Ensure that before any movement, to place your **gantry**, **X** and **DC** to have enough clearance for test movements, refer to the below kinematics picture for an example.
 
 The expected directions for our Hybrid Printer Kinematics, keep that in mind when doing movement testing.
 
@@ -82,7 +82,7 @@ FORCE_MOVE STEPPER=dual_carriage DISTANCE=-10 VELOCITY=10
 When you run the first command, the X should move **10mm** to the **right**, while running the second command the X should go **10mm** on the **left** side, returning to its original position.
 
 > [!IMPORTANT]
-> If your motor runs in the opposite direction, you need to navigate to your motor sections, find the motor that is going in the opposite direction and adding or removing the **!** sign after the `dir_pin`:
+> If your motor runs in the opposite direction, you need to navigate to your motor sections, find the motor that is going in the opposite direction and adding or removing the **`!`** sign after the `dir_pin`:
 > ```
 > [dual_carriage]
 > dir_pin: !dual_carriage_dir_pin 

@@ -160,7 +160,7 @@ To enter the calibration, press the VAOC button on the left side of the menu.
 Please allow the system a few seconds to open up the VAOC calibration. Press "Start Calibration on the upper left corner. 
 > [!IMPORTANT]
 > If you haven't homed the machine, it will home now.
-> After it homes or if it already is homed, the machine will go towards the position that is written in `ratos-variables.cfg`, `_xcontrolpoint, _yxcontrolpoint, _zxcontrolpoint`
+> After it homes or if it already is homed, the machine will go towards the position that is written in `ratos-variables.cfg`, `_xcontrolpoint, _ycontrolpoint, _zcontrolpoint`
 
 When the machine is done moving towards the `ratos-variables.cfg` values, you can now place the VAOC Case as close as to the nozzle center as you can.
 
